@@ -1,0 +1,19 @@
+{
+  "name": "blogster-be",
+  "version": "1.0.0",
+  "description": "Serverless functions blogster",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "bash ./deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "John Ayeni",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
