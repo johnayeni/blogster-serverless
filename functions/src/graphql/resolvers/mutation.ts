@@ -1,6 +1,39 @@
 import * as firebaseAdmin from 'firebase-admin';
+import * as functions from 'firebase-functions';
+import { AuthenticationError } from 'apollo-server-express';
+import firebase from 'firebase';
+
+const CONFIG = functions.config().env;
+const FIREBASE_CONFIG = CONFIG.firebase;
+
+firebase.initializeApp(FIREBASE_CONFIG);
 
 const mutation = {
+  /**
+   * Login and authenticate a user
+   * @param _
+   * @param args
+   * @returns
+   */
+  login: async (_: any, args: { email: string; password: string }) => {
+    const { email, password } = args;
+
+    try {
+      const credential = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+
+      const user = await credential.user?.toJSON();
+      const token = await credential.user?.getIdToken();
+
+      return {
+        user,
+        token
+      };
+    } catch (error) {
+      throw new AuthenticationError('Invalid username or password');
+    }
+  },
   /**
    * Create a new user
    * @param _

@@ -26,13 +26,13 @@ const schema = gql`
   }
 
   type Query {
-    login(email: String!, password: String!): Login!
-    getProfile: User!
-    getPosts: [Post]!
-    getPost(id: String!): Post!
+    profile: User!
+    posts: [Post]!
+    post(id: String!): Post!
   }
 
   type Mutation {
+    login(email: String!, password: String!): Login!
     register(displayName: String!, email: String!, password: String!): Register!
     createPost(title: String!, body: String!): Post!
   }
