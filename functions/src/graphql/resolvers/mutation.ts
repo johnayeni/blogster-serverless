@@ -79,7 +79,7 @@ const mutation = {
 
     const post = await data.get();
 
-    return post.data();
+    return { id: post.id, ...post.data() };
   }
 };
 

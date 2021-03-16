@@ -72,7 +72,7 @@ const query = {
       .doc(id)
       .get();
 
-    return post.data();
+    return { id, ...post.data() };
   }
 };
 
